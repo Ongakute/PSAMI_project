@@ -21,9 +21,6 @@
             android:name=".ExcerciseActivity"
             android:exported="false" />
         <activity
-            android:name=".Ble"
-            android:exported="false" />
-        <activity
             android:name=".history.ActivitiesHistory"
             android:exported="false" />
         <activity
