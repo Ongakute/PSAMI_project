@@ -84,3 +84,7 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 local.properties
+.idea/misc.xml
+local.properties
+
+app\build

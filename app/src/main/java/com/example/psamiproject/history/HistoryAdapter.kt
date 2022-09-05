@@ -24,7 +24,8 @@ class HistoryAdapter : ListAdapter<UserActivity, HistoryAdapter.ViewHolder>(Hist
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.nameTxt.text = item.name
-        holder.binding.dateTxt.text = item.stringDate()
+        holder.binding.nameTxt.text = "Ćwiczenie: " + item.name
+        holder.binding.countTxt.text = "Ilość: " + item.count
+        holder.binding.dateTxt.text = "Data: " + item.stringDate()
     }
 }

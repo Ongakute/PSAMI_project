@@ -16,11 +16,21 @@
         tools:text="Name" />
 
     <TextView
-        android:id="@+id/dateTxt"
+        android:id="@+id/countTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTxt"
+        tools:text="Count" />
+
+    <TextView
+        android:id="@+id/dateTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countTxt"
         tools:text="Date" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
