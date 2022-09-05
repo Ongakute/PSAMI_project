@@ -26,19 +26,5 @@ object UserRepo {
 
     fun userId() = FirebaseAuth.getInstance().currentUser!!.uid
 
-    fun getPoints(userID: String): String
-    {
-        var temp = "20"
-        val docRef = users().document(userID)
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("SPYDER", "DocumentSnapshot data: ${document.data?.get("points")}")
-                    temp = document.data?.get("points").toString()
-                }
-            }
-        return temp
-    }
-
     private fun users() = db.collection("users")
 }
