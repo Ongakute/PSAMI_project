@@ -27,12 +27,10 @@ class CompleteActivity : AppCompatActivity() {
             val id = radioGroup.checkedRadioButtonId
             val name = findViewById<RadioButton>(id).text.toString()
             val date = Date()
-            val activity = UserActivity("", UserRepo.userId(), name, 0, date.time)
-            //UserActivityRepo.addUserActivity(activity) {
-                val intent = Intent(this, ExcerciseActivity::class.java)
-                intent.putExtra("ACTIVITY", activity)
-                startActivity(intent)
-            //}
+            val activity = UserActivity("", UserRepo.userId(), name, 0, 0, date.time)
+            val intent = Intent(this, ExcerciseActivity::class.java)
+            intent.putExtra("ACTIVITY", activity)
+            startActivity(intent)
         }
     }
 }
