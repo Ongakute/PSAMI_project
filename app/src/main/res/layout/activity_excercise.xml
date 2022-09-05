@@ -13,7 +13,7 @@ tools:context=".Ble">
     android:layout_width="wrap_content"
     android:layout_height="0dp"
     android:layout_weight="10"
-    android:layout_marginVertical="15dp"
+    android:layout_marginVertical="5dp"
     android:layout_gravity="center"
     android:text="Rozpocznij skanowanie" />
 
@@ -26,37 +26,45 @@ tools:context=".Ble">
     android:layout_gravity="center"
     android:text="Połącz" />
 
-<TextView
-    android:id="@+id/accelerometer_textView"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="18"
-    android:textSize="30sp"
-    android:text="Akcelerometr:\n 0.00 0.00 0.00" />
+    <TextView
+        android:id="@+id/count_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:textSize="50sp"
+        android:text="Przysiady = 0\nSkłony = 0" />
 
-<TextView
-    android:id="@+id/gyroscope_textView"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="18"
-    android:textSize="30sp"
-    android:text="Żyroskop:\n 0.00 0.00 0.00" />
+    <TextView
+        android:id="@+id/accelerometer_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:textSize="30sp"
+        android:text="Akcelerometr Ręka\n 0.00 0.00 0.00" />
 
-<TextView
-    android:id="@+id/accelerometer2_textView"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="18"
-    android:textSize="30sp"
-    android:text="Akcelerometr:\n 0.00 0.00 0.00" />
+    <TextView
+        android:id="@+id/gyroscope_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:textSize="30sp"
+        android:text="Żyroskop Ręka\n 0.00 0.00 0.00" />
 
-<TextView
-    android:id="@+id/gyroscope2_textView"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="18"
-    android:textSize="30sp"
-    android:text="Żyroskop:\n 0.00 0.00 0.00" />
+    <TextView
+        android:id="@+id/accelerometer2_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:textSize="30sp"
+        android:text="Akcelerometr Noga\n 0.00 0.00 0.00" />
+
+    <TextView
+        android:id="@+id/gyroscope2_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:textSize="30sp"
+        android:text="Żyroskop Noga\n 0.00 0.00 0.00" />
 
 <Button
     android:id="@+id/buttonEndExcercise"

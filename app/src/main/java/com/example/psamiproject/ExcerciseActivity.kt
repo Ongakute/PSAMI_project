@@ -35,6 +35,7 @@ class ExcerciseActivity : AppCompatActivity() {
     private lateinit var gyroscopeTextView: TextView
     private lateinit var accelerometerTextView2 : TextView
     private lateinit var gyroscopeTextView2: TextView
+    private lateinit var countTextView: TextView
 
     private lateinit var connectedGatt: BluetoothGatt
     private lateinit var connectedGattReka: BluetoothGatt
@@ -45,11 +46,21 @@ class ExcerciseActivity : AppCompatActivity() {
     private val addressNoga = "24:6F:28:15:EA:8E"
     private val addressReka = "0C:B8:15:D4:C9:DA"
 
-    private var lastAccXReka = 0.0
-    private var accXRekaUpCount = 0 // > 5
-    private var accXRekaSkipCount = 0 // < 3
-    private var accXRekaDownCount = 0 // > 5
-    private var przysiadCount = 0
+    private var excerciseName = "Temp"
+
+    private var lastAccXReka = 0.0f
+    private var accXRekaUpCount = 0 // > 7
+    private var accXRekaDownCount = 0 // > 7
+    private var lastRotXNoga = 0.0f
+    private var rotXNogaUpCount = 0 // > 6
+    private var rotXNogaDownCount = 0 // > 6
+    private var lastAccZReka = 0.0f
+    private var accZRekaUpCount = 0 // > 7
+    private var accZRekaDownCount = 0 // > 7
+    private var lastRotYNoga = 0.0f
+    private var rotYNogaUpCount = 0 // < 3
+    private var rotYNogaDownCount = 0 // < 3
+    private var excerciseCount = 0
 
     private var isScanning = false
         set(value) {
@@ -70,15 +81,18 @@ class ExcerciseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_excercise)
 
         val activity = intent.extras!!.getSerializable("ACTIVITY") as UserActivity
+        excerciseName = activity.name
 
         findViewById<Button>(R.id.buttonEndExcercise).setOnClickListener {
             if(isConnected)
             {
                 connectedGatt.disconnect()
                 connectedGattReka.disconnect()
+                connectedGatt.close()
+                connectedGattReka.close()
                 isConnected = false
             }
-            activity.count = przysiadCount
+            activity.count = excerciseCount
             UserActivityRepo.addUserActivity(activity) {
             val intent = Intent(this, ActivitiesHistory::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -90,6 +104,7 @@ class ExcerciseActivity : AppCompatActivity() {
         gyroscopeTextView = findViewById(R.id.gyroscope_textView)
         accelerometerTextView2 = findViewById(R.id.accelerometer2_textView)
         gyroscopeTextView2 = findViewById(R.id.gyroscope2_textView)
+        countTextView = findViewById(R.id.count_textView)
 
         connectButton = findViewById(R.id.connect_button)
 
@@ -107,6 +122,8 @@ class ExcerciseActivity : AppCompatActivity() {
         {
             connectedGatt.disconnect()
             connectedGattReka.disconnect()
+            connectedGatt.close()
+            connectedGattReka.close()
             isConnected = false
         }
         else
@@ -240,12 +257,13 @@ class ExcerciseActivity : AppCompatActivity() {
             if (data == "9b3da85c-ea06-4c41-98fb-929038069269") {
                 val value = characteristic.getStringValue(0)
                 val value2 = value.split(";")
-                val X = value2[0]
-                val Y = value2[1]
-                val Z = value2[2]
+                val X = value2[0].toFloat()
+                val Y = value2[1].toFloat()
+                val Z = value2[2].toFloat()
 
                 runOnUiThread {
-                    gyroscopeTextView.text = "Żyroskop:\n X=$X Y=$Y Z=$Z"
+                    gyroscopeTextView.text = "Żyroskop Ręka\n X=$X Y=$Y Z=$Z"
+                    countTextView.text = "${excerciseName} = ${excerciseCount}"
                 }
             }
             else if (data == "cba1d466-344c-4be3-ab3f-189f80dd7518") {
@@ -256,29 +274,54 @@ class ExcerciseActivity : AppCompatActivity() {
                 val Y = value[1].toFloat()
                 val Z = value[2].toFloat()
 
-                val temp = X - lastAccXReka
-                lastAccXReka = X.toDouble()
-                Log.d("TEMP ", temp.toString())
-                if(temp > 0.35)
+                if(excerciseName == "Przysiady")
                 {
-                    accXRekaUpCount++
-                }
-                else if(temp < -0.35)
-                {
-                    accXRekaDownCount++
-                }
-                else
-                {
-                    accXRekaSkipCount++
-                }
+                    val temp = X - lastAccXReka
+                    lastAccXReka = X
+                    if(temp > 0.4)
+                    {
+                        accXRekaUpCount++
+                    }
+                    else if(temp < -0.4)
+                    {
+                        accXRekaDownCount++
+                    }
 
-                if(accXRekaUpCount > 5 && accXRekaDownCount > 5 && accXRekaSkipCount < 4)
+                    if(accXRekaUpCount > 8 && accXRekaDownCount > 8)// && rotXNogaUpCount > 6 && rotXNogaDownCount > 6)
+                    {
+                        excerciseCount++
+                        accXRekaUpCount = 0
+                        accXRekaDownCount = 0
+                        rotXNogaUpCount = 0
+                        rotXNogaDownCount = 0
+                    }
+                }
+                else if(excerciseName == "Skłony")
                 {
-                    przysiadCount++
+                    val temp2 = Z - lastAccZReka
+                    lastAccZReka = Z
+                    if(temp2 > 0.4)
+                    {
+                        accZRekaUpCount++
+                    }
+                    else if(temp2 < -0.4)
+                    {
+                        accZRekaDownCount++
+                    }
+
+                    if(accZRekaUpCount > 7 && accZRekaDownCount > 7 && rotYNogaUpCount < 3 && rotYNogaDownCount < 3)
+                    {
+                        excerciseCount++
+                        accZRekaUpCount = 0
+                        accZRekaDownCount = 0
+                        rotYNogaUpCount = 0
+                        rotYNogaDownCount = 0
+                    }
                 }
 
                 runOnUiThread {
-                    accelerometerTextView.text = "Akcelerometr:\n X=" + X + " Y=" + Y + " Z=" + Z + "\n Przysiady = " + przysiadCount
+                    accelerometerTextView.text = "Akcelerometr Ręka\n X=$X Y=$Y Z=$Z"
+                    countTextView.text = "${excerciseName} = ${excerciseCount}"
                 }
             }
         }
