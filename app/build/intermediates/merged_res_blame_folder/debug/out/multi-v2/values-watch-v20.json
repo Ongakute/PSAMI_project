@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.example.psamiproject.app-mergeDebugResources-23:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/Users/justyna/.gradle/caches/transforms-3/89f231bfb25ef2fef9224edcfc363cbc/transformed/play-services-auth-20.2.0/res/values-watch-v20/values.xml",
+                    "source": "C:\\Users\\Patryk\\.gradle\\caches\\transforms-3\\0d7a25435f2c291bf12cf9b52e714f67\\transformed\\play-services-auth-20.2.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/justyna/.gradle/caches/transforms-3/cc65b5045f2f8015330367e6907c6b26/transformed/appcompat-1.3.1/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "C:\\Users\\Patryk\\.gradle\\caches\\transforms-3\\f728fba8596d7f658fa800dbe03dd1fa\\transformed\\appcompat-1.3.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

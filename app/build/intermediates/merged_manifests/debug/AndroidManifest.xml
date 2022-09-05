@@ -5,13 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="26"
-        android:targetSdkVersion="31" />
+        android:minSdkVersion="28"
+        android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -33,6 +32,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.PSAMIproject" >
+        <activity
+            android:name="com.example.psamiproject.ExcerciseActivity"
+            android:exported="false" />
         <activity
             android:name="com.example.psamiproject.Ble"
             android:exported="false" />

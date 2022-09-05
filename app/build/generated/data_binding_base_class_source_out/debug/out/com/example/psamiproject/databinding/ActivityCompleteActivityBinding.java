@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,12 +26,26 @@ public final class ActivityCompleteActivityBinding implements ViewBinding {
   public final TextView activityNameTxt;
 
   @NonNull
+  public final RadioButton radioButtonPrzysiady;
+
+  @NonNull
+  public final RadioButton radioButtonSklony;
+
+  @NonNull
+  public final RadioGroup radioGroup;
+
+  @NonNull
   public final Button sendToDbBtn;
 
   private ActivityCompleteActivityBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView activityNameTxt, @NonNull Button sendToDbBtn) {
+      @NonNull TextView activityNameTxt, @NonNull RadioButton radioButtonPrzysiady,
+      @NonNull RadioButton radioButtonSklony, @NonNull RadioGroup radioGroup,
+      @NonNull Button sendToDbBtn) {
     this.rootView = rootView;
     this.activityNameTxt = activityNameTxt;
+    this.radioButtonPrzysiady = radioButtonPrzysiady;
+    this.radioButtonSklony = radioButtonSklony;
+    this.radioGroup = radioGroup;
     this.sendToDbBtn = sendToDbBtn;
   }
 
@@ -66,6 +82,24 @@ public final class ActivityCompleteActivityBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.radioButtonPrzysiady;
+      RadioButton radioButtonPrzysiady = ViewBindings.findChildViewById(rootView, id);
+      if (radioButtonPrzysiady == null) {
+        break missingId;
+      }
+
+      id = R.id.radioButtonSklony;
+      RadioButton radioButtonSklony = ViewBindings.findChildViewById(rootView, id);
+      if (radioButtonSklony == null) {
+        break missingId;
+      }
+
+      id = R.id.radioGroup;
+      RadioGroup radioGroup = ViewBindings.findChildViewById(rootView, id);
+      if (radioGroup == null) {
+        break missingId;
+      }
+
       id = R.id.sendToDbBtn;
       Button sendToDbBtn = ViewBindings.findChildViewById(rootView, id);
       if (sendToDbBtn == null) {
@@ -73,7 +107,7 @@ public final class ActivityCompleteActivityBinding implements ViewBinding {
       }
 
       return new ActivityCompleteActivityBinding((ConstraintLayout) rootView, activityNameTxt,
-          sendToDbBtn);
+          radioButtonPrzysiady, radioButtonSklony, radioGroup, sendToDbBtn);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

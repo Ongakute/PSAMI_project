@@ -1,19 +1,19 @@
-#Wed Jun 08 17:22:01 CEST 2022
+#Mon Sep 05 11:38:52 CEST 2022
 path.4=7/classes.dex
 path.3=6/classes.dex
 path.2=3/classes.dex
 path.1=0/classes.dex
 path.5=classes2.dex
 path.0=classes.dex
-base.4=/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
-base.3=/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
-base.2=/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
-base.1=/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.0=/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.4=C\:\\Users\\Patryk\\Documents\\GitHub\\PSAMI_project\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+base.3=C\:\\Users\\Patryk\\Documents\\GitHub\\PSAMI_project\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+base.2=C\:\\Users\\Patryk\\Documents\\GitHub\\PSAMI_project\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.1=C\:\\Users\\Patryk\\Documents\\GitHub\\PSAMI_project\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.0=C\:\\Users\\Patryk\\Documents\\GitHub\\PSAMI_project\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
 renamed.5=classes6.dex
 renamed.4=classes5.dex
-base.5=/Users/justyna/Downloads/PSAMI_project/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.5=C\:\\Users\\Patryk\\Documents\\GitHub\\PSAMI_project\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex

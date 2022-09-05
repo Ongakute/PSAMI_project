@@ -1884,6 +1884,7 @@ id SYM
 id TOP_END
 id TOP_START
 id accelerate
+id accelerometer2_textView
 id accelerometer_textView
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -1978,6 +1979,7 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id button
+id buttonEndExcercise
 id buttonPanel
 id buttonSignIn
 id button_ble
@@ -2016,6 +2018,7 @@ id contiguous
 id continuousVelocity
 id coordinator
 id cos
+id countTxt
 id counterclockwise
 id currentState
 id custom
@@ -2088,6 +2091,7 @@ id group_divider
 id grouping
 id groups
 id guideline
+id gyroscope2_textView
 id gyroscope_textView
 id header_title
 id hideable
@@ -2218,6 +2222,9 @@ id postLayout
 id progress_circular
 id progress_horizontal
 id radio
+id radioButtonPrzysiady
+id radioButtonSklony
+id radioGroup
 id ratio
 id rectangles
 id reverseSawtooth
@@ -2438,6 +2445,7 @@ layout abc_tooltip
 layout activity_activities_history
 layout activity_ble
 layout activity_complete_activity
+layout activity_excercise
 layout activity_main
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
@@ -2585,15 +2593,11 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
-string copy_toast_msg
 string default_web_client_id
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-string fallback_menu_item_copy_link
-string fallback_menu_item_open_in_browser
-string fallback_menu_item_share_link
 string gcm_defaultSenderId
 string google_api_key
 string google_app_id
@@ -3532,7 +3536,6 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
-xml image_share_filepaths
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start

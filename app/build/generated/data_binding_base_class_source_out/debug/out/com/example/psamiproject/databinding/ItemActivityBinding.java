@@ -20,14 +20,18 @@ public final class ItemActivityBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView countTxt;
+
+  @NonNull
   public final TextView dateTxt;
 
   @NonNull
   public final TextView nameTxt;
 
-  private ItemActivityBinding(@NonNull ConstraintLayout rootView, @NonNull TextView dateTxt,
-      @NonNull TextView nameTxt) {
+  private ItemActivityBinding(@NonNull ConstraintLayout rootView, @NonNull TextView countTxt,
+      @NonNull TextView dateTxt, @NonNull TextView nameTxt) {
     this.rootView = rootView;
+    this.countTxt = countTxt;
     this.dateTxt = dateTxt;
     this.nameTxt = nameTxt;
   }
@@ -59,6 +63,12 @@ public final class ItemActivityBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.countTxt;
+      TextView countTxt = ViewBindings.findChildViewById(rootView, id);
+      if (countTxt == null) {
+        break missingId;
+      }
+
       id = R.id.dateTxt;
       TextView dateTxt = ViewBindings.findChildViewById(rootView, id);
       if (dateTxt == null) {
@@ -71,7 +81,7 @@ public final class ItemActivityBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemActivityBinding((ConstraintLayout) rootView, dateTxt, nameTxt);
+      return new ItemActivityBinding((ConstraintLayout) rootView, countTxt, dateTxt, nameTxt);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
