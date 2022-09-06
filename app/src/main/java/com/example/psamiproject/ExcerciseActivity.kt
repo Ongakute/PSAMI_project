@@ -21,6 +21,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.psamiproject.data.Point
+import com.example.psamiproject.data.PointRepo
 import java.util.*
 
 class ExcerciseActivity : AppCompatActivity() {
@@ -93,10 +95,13 @@ class ExcerciseActivity : AppCompatActivity() {
                 isConnected = false
             }
             activity.count = excerciseCount
+            activity.points = (2.5 * excerciseCount).toInt()
             UserActivityRepo.addUserActivity(activity) {
-            val intent = Intent(this, ActivitiesHistory::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NO_HISTORY
-            startActivity(intent)
+                PointRepo.addUserPoint(Point(activity.points), activity.userId) {
+                    val intent = Intent(this, ActivitiesHistory::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NO_HISTORY
+                    startActivity(intent)
+                }
             }
         }
 

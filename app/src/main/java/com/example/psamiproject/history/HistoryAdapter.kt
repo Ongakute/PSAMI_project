@@ -26,6 +26,7 @@ class HistoryAdapter : ListAdapter<UserActivity, HistoryAdapter.ViewHolder>(Hist
         val item = getItem(position)
         holder.binding.nameTxt.text = "Ćwiczenie: " + item.name
         holder.binding.countTxt.text = "Ilość: " + item.count
+        holder.binding.pointsTxt.text = "Punkty: " + item.points
         holder.binding.dateTxt.text = "Data: " + item.stringDate()
     }
 }

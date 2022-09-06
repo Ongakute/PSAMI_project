@@ -9,6 +9,7 @@ data class UserActivity(
     val userId: String = "",
     val name: String = "",
     var count: Int = 0,
+    var points: Int = 0,
     val date: Long = 0
 ): Serializable {
 

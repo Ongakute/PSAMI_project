@@ -22,6 +22,8 @@ object UserRepo {
         }
     }
 
+    fun userEmail() = FirebaseAuth.getInstance().currentUser!!.email
+
     fun userId() = FirebaseAuth.getInstance().currentUser!!.uid
 
     private fun users() = db.collection("users")
