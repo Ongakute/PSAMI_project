@@ -9,7 +9,7 @@ import com.example.psamiproject.data.Point
 import com.example.psamiproject.data.UserActivityRepo
 import com.example.psamiproject.data.UserRepo
 import com.example.psamiproject.data.PointRepo
-import com.example.psamiproject.data.UserRepo.userEmail
+import com.example.psamiproject.data.UsernameRepo
 import com.example.psamiproject.databinding.ActivityActivitiesHistoryBinding
 
 class ActivitiesHistory : AppCompatActivity() {
@@ -22,15 +22,17 @@ class ActivitiesHistory : AppCompatActivity() {
         binding = ActivityActivitiesHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.emailTextView.text = "Witaj " + userEmail()
+        UsernameRepo.getUserName(UserRepo.userId()) {
+            binding.emailTextView.text = "Witaj $it"
+        }
         PointRepo.getUserPoints(UserRepo.userId()) {
             if(it != "-1") {
-                binding.pointsTextView.text = "Punkty = " + it
+                binding.pointsTextView.text = "Punkty = $it"
             }
             else
             {
                 PointRepo.addUserPoint(Point(0), UserRepo.userId()) {
-                    binding.pointsTextView.text = "Punkty = " + it
+                    binding.pointsTextView.text = "Punkty = $it"
                 }
             }
         }
