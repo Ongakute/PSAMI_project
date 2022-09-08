@@ -3,11 +3,15 @@ package com.example.psamiproject
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.psamiproject.data.User
 import com.example.psamiproject.data.UserRepo
+import com.example.psamiproject.data.UsernameRepo
 import com.example.psamiproject.history.ActivitiesHistory
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
@@ -97,14 +101,40 @@ class LogIn : AppCompatActivity() {
                                         Log.d("TS", "signInWithCredential:success")
                                         val user = auth.currentUser
                                         UserRepo.addUser(User(user!!.uid, user.email!!)) {
-                                            val intent = Intent(this, ActivitiesHistory::class.java)
-                                            startActivity(intent)
+                                            UsernameRepo.getUserName(user.uid) {
+                                                if(it == "-1")
+                                                {
+                                                    var username = "username"
+                                                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                                                    builder.setTitle("Podaj nazwę użytkownika")
+
+                                                    val input = EditText(this)
+                                                    input.inputType = InputType.TYPE_CLASS_TEXT
+                                                    builder.setView(input)
+                                                    builder.setPositiveButton("OK"
+                                                    ) { _, _ ->
+                                                        username = input.text.toString()
+                                                        UsernameRepo.setUserName(
+                                                            user.uid,
+                                                            username
+                                                        ) {
+                                                            val intent = Intent(this, ActivitiesHistory::class.java)
+                                                            startActivity(intent)
+                                                        }
+                                                    }
+                                                    builder.show()
+                                                }
+                                                else
+                                                {
+                                                    val intent = Intent(this, ActivitiesHistory::class.java)
+                                                    startActivity(intent)
+                                                }
+                                            }
                                         }
 
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w("TS", "signInWithCredential:failure", task.exception)
-
                                     }
                                 }
                         }
