@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PSAMIproject">
         <activity
+            android:name=".RankActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExcerciseActivity"
             android:exported="false" />
         <activity

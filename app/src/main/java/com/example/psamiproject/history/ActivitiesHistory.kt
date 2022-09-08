@@ -2,14 +2,10 @@ package com.example.psamiproject.history
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.psamiproject.CompleteActivity
-import com.example.psamiproject.data.Point
-import com.example.psamiproject.data.UserActivityRepo
-import com.example.psamiproject.data.UserRepo
-import com.example.psamiproject.data.PointRepo
-import com.example.psamiproject.data.UsernameRepo
+import com.example.psamiproject.RankActivity
+import com.example.psamiproject.data.*
 import com.example.psamiproject.databinding.ActivityActivitiesHistoryBinding
 
 class ActivitiesHistory : AppCompatActivity() {
@@ -22,16 +18,20 @@ class ActivitiesHistory : AppCompatActivity() {
         binding = ActivityActivitiesHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var username = ""
+
         UsernameRepo.getUserName(UserRepo.userId()) {
             binding.emailTextView.text = "Witaj $it"
+            username = it
         }
+
         PointRepo.getUserPoints(UserRepo.userId()) {
             if(it != "-1") {
                 binding.pointsTextView.text = "Punkty = $it"
             }
             else
             {
-                PointRepo.addUserPoint(Point(0), UserRepo.userId()) {
+                PointRepo.addUserPoint(Point(username, 0), UserRepo.userId()) {
                     binding.pointsTextView.text = "Punkty = $it"
                 }
             }
@@ -45,6 +45,11 @@ class ActivitiesHistory : AppCompatActivity() {
 
         binding.addBtn.setOnClickListener {
             val intent = Intent(this, CompleteActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.rankButton.setOnClickListener {
+            val intent = Intent(this, RankActivity::class.java)
             startActivity(intent)
         }
     }
