@@ -1,6 +1,8 @@
 package com.example.psamiproject.data
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+
 
 object PointRepo {
 
@@ -30,8 +32,6 @@ object PointRepo {
             }
     }
 
-
-
     fun addUserPoint(
         point: Point, userID: String,
         success: (String) -> Unit
@@ -41,6 +41,7 @@ object PointRepo {
             {
                 val sum = point.value + it.toInt()
                 val result = hashMapOf(
+                    "username" to point.username,
                     "value" to sum
                 )
                 points().document(userID).set(result).addOnSuccessListener { success(sum.toString()) }
@@ -48,10 +49,26 @@ object PointRepo {
             else
             {
                 val result = hashMapOf(
+                    "username" to point.username,
                     "value" to point.value
                 )
                 points().document(userID).set(result).addOnSuccessListener { success(point.value.toString()) }
             }
+        }
+    }
+
+    fun getAllUsersPoint(
+        success: (List<Point>) -> Unit
+    ) {
+
+        points().orderBy("value", Query.Direction.DESCENDING).get().addOnSuccessListener {
+            var items : MutableList<Point> = mutableListOf()
+            for(document in it.documents)
+            {
+                val test = document.data
+                items.add(Point(test!!["username"] as String, (test["value"] as Long).toInt()))
+            }
+            success(items as List<Point>)
         }
     }
 

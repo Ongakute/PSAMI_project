@@ -6,8 +6,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.psamiproject.data.UserActivity
-import com.example.psamiproject.data.UserActivityRepo
 import com.example.psamiproject.history.ActivitiesHistory
 import android.Manifest
 import android.bluetooth.*
@@ -16,13 +14,11 @@ import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.psamiproject.data.Point
-import com.example.psamiproject.data.PointRepo
+import com.example.psamiproject.data.*
 import java.util.*
 
 class ExcerciseActivity : AppCompatActivity() {
@@ -97,10 +93,13 @@ class ExcerciseActivity : AppCompatActivity() {
             activity.count = excerciseCount
             activity.points = (2.5 * excerciseCount).toInt()
             UserActivityRepo.addUserActivity(activity) {
-                PointRepo.addUserPoint(Point(activity.points), activity.userId) {
-                    val intent = Intent(this, ActivitiesHistory::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NO_HISTORY
-                    startActivity(intent)
+                UsernameRepo.getUserName(UserRepo.userId()) {
+                    PointRepo.addUserPoint(Point(it, activity.points), activity.userId) {
+                        val intent = Intent(this, ActivitiesHistory::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(intent)
+                    }
                 }
             }
         }
