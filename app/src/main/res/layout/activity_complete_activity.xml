@@ -55,8 +55,18 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="1dp"
             android:text="Skłony" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBrzuszki"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="1dp"
+            android:text="Brzuszki" />
     </RadioGroup>
 
 

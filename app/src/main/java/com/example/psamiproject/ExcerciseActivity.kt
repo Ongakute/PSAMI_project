@@ -50,6 +50,12 @@ class ExcerciseActivity : AppCompatActivity() {
     private var accXRekaUpCount = 0 // > 7
     private var accXRekaDownCount = 0 // > 7
     private var lastRotXNoga = 0.0f
+    private var rotYRekaUpCount = 0
+    private var rotYRekaDownCount = 0
+    private var rotZRekaUpCount = 0
+    private var rotZRekaDownCount = 0
+    private var lastRotYReka = 0.0f
+    private var lastRotZReka = 0.0f
     private var rotXNogaUpCount = 0 // > 6
     private var rotXNogaDownCount = 0 // > 6
     private var lastAccZReka = 0.0f
@@ -265,6 +271,42 @@ class ExcerciseActivity : AppCompatActivity() {
                 val Y = value2[1].toFloat()
                 val Z = value2[2].toFloat()
 
+                when (excerciseName) {
+                    "Brzuszki" -> {
+                        val tempY = Y - lastRotYReka
+                        val tempZ = Z - lastRotZReka
+                        lastRotYReka = Y
+                        lastRotZReka = Z
+
+                        if(tempY > 0.35)
+                        {
+                            rotYRekaUpCount++
+                        }
+                        else if(tempY < -0.35)
+                        {
+                            rotYRekaDownCount++
+                        }
+
+                        if(tempZ > 0.35)
+                        {
+                            rotZRekaUpCount++
+                        }
+                        else if(tempZ < -0.35)
+                        {
+                            rotZRekaDownCount++
+                        }
+
+                        if(rotYRekaUpCount > 5 && rotYRekaDownCount > 5 && rotZRekaUpCount > 4 && rotZRekaDownCount > 4)
+                        {
+                            excerciseCount++
+                            rotYRekaUpCount = 0
+                            rotYRekaDownCount = 0
+                            rotZRekaUpCount = 0
+                            rotZRekaDownCount = 0
+                        }
+                    }
+                }
+
                 runOnUiThread {
                     gyroscopeTextView.text = "Żyroskop Ręka\n X=$X Y=$Y Z=$Z"
                     countTextView.text = "${excerciseName} = ${excerciseCount}"
@@ -278,48 +320,48 @@ class ExcerciseActivity : AppCompatActivity() {
                 val Y = value[1].toFloat()
                 val Z = value[2].toFloat()
 
-                if(excerciseName == "Przysiady")
-                {
-                    val temp = X - lastAccXReka
-                    lastAccXReka = X
-                    if(temp > 0.4)
-                    {
-                        accXRekaUpCount++
-                    }
-                    else if(temp < -0.4)
-                    {
-                        accXRekaDownCount++
-                    }
+                when (excerciseName) {
+                    "Przysiady" -> {
+                        val temp = X - lastAccXReka
+                        lastAccXReka = X
+                        if(temp > 0.4)
+                        {
+                            accXRekaUpCount++
+                        }
+                        else if(temp < -0.4)
+                        {
+                            accXRekaDownCount++
+                        }
 
-                    if(accXRekaUpCount > 8 && accXRekaDownCount > 8)// && rotXNogaUpCount > 6 && rotXNogaDownCount > 6)
-                    {
-                        excerciseCount++
-                        accXRekaUpCount = 0
-                        accXRekaDownCount = 0
-                        rotXNogaUpCount = 0
-                        rotXNogaDownCount = 0
+                        if(accXRekaUpCount > 8 && accXRekaDownCount > 8)// && rotXNogaUpCount > 6 && rotXNogaDownCount > 6)
+                        {
+                            excerciseCount++
+                            accXRekaUpCount = 0
+                            accXRekaDownCount = 0
+                            rotXNogaUpCount = 0
+                            rotXNogaDownCount = 0
+                        }
                     }
-                }
-                else if(excerciseName == "Skłony")
-                {
-                    val temp2 = Z - lastAccZReka
-                    lastAccZReka = Z
-                    if(temp2 > 0.4)
-                    {
-                        accZRekaUpCount++
-                    }
-                    else if(temp2 < -0.4)
-                    {
-                        accZRekaDownCount++
-                    }
+                    "Skłony" -> {
+                        val temp2 = Z - lastAccZReka
+                        lastAccZReka = Z
+                        if(temp2 > 0.4)
+                        {
+                            accZRekaUpCount++
+                        }
+                        else if(temp2 < -0.4)
+                        {
+                            accZRekaDownCount++
+                        }
 
-                    if(accZRekaUpCount > 7 && accZRekaDownCount > 7 && rotYNogaUpCount < 3 && rotYNogaDownCount < 3)
-                    {
-                        excerciseCount++
-                        accZRekaUpCount = 0
-                        accZRekaDownCount = 0
-                        rotYNogaUpCount = 0
-                        rotYNogaDownCount = 0
+                        if(accZRekaUpCount > 7 && accZRekaDownCount > 7 && rotYNogaUpCount < 3 && rotYNogaDownCount < 3)
+                        {
+                            excerciseCount++
+                            accZRekaUpCount = 0
+                            accZRekaDownCount = 0
+                            rotYNogaUpCount = 0
+                            rotYNogaDownCount = 0
+                        }
                     }
                 }
 
