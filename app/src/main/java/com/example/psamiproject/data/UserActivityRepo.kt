@@ -34,6 +34,7 @@ object UserActivityRepo {
                     error(error)
                 } else {
                     val items = value!!.toObjects(UserActivity::class.java)
+                    items.sortByDescending { it.date }
                     success(items)
                 }
             }
