@@ -206,7 +206,7 @@ class ExcerciseActivity : AppCompatActivity() {
             {
                 if(!noga)
                 {
-                    noga = true;
+                    noga = true
                     scanResults.add(result)
                     if (noga && reka) {
                         connectButton.isEnabled = true
@@ -217,7 +217,7 @@ class ExcerciseActivity : AppCompatActivity() {
             if(result.device.address == addressReka)
             {
                 if(!reka) {
-                    reka = true;
+                    reka = true
                     scanResults.add(result)
                     if (noga && reka) {
                         connectButton.isEnabled = true
@@ -447,8 +447,6 @@ class ExcerciseActivity : AppCompatActivity() {
 
     private val bluetoothCallbackNoga: BluetoothGattCallback = object : BluetoothGattCallback() {
         override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
-            val deviceAddress = gatt?.device?.address
-
             if(gatt != null)
             {
                 connectedGatt = gatt
