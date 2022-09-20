@@ -49,11 +49,13 @@ class ExcerciseActivity : AppCompatActivity() {
     private var lastAccXReka = 0.0f
     private var accXRekaUpCount = 0 // > 7
     private var accXRekaDownCount = 0 // > 7
-    private var lastRotXNoga = 0.0f
+    private var rotXRekaUpCount = 0
+    private var rotXRekaDownCount = 0
     private var rotYRekaUpCount = 0
     private var rotYRekaDownCount = 0
     private var rotZRekaUpCount = 0
     private var rotZRekaDownCount = 0
+    private var lastRotXReka = 0.0f
     private var lastRotYReka = 0.0f
     private var lastRotZReka = 0.0f
     private var rotXNogaUpCount = 0 // > 6
@@ -61,7 +63,6 @@ class ExcerciseActivity : AppCompatActivity() {
     private var lastAccZReka = 0.0f
     private var accZRekaUpCount = 0 // > 7
     private var accZRekaDownCount = 0 // > 7
-    private var lastRotYNoga = 0.0f
     private var rotYNogaUpCount = 0 // < 3
     private var rotYNogaDownCount = 0 // < 3
     private var excerciseCount = 0
@@ -299,6 +300,52 @@ class ExcerciseActivity : AppCompatActivity() {
                         if(rotYRekaUpCount > 5 && rotYRekaDownCount > 5 && rotZRekaUpCount > 4 && rotZRekaDownCount > 4)
                         {
                             excerciseCount++
+                            rotYRekaUpCount = 0
+                            rotYRekaDownCount = 0
+                            rotZRekaUpCount = 0
+                            rotZRekaDownCount = 0
+                        }
+                    }
+                    "Pajacyki" -> {
+                        val tempX = X - lastRotXReka
+                        val tempY = Y - lastRotYReka
+                        val tempZ = Z - lastRotZReka
+                        lastRotXReka = X
+                        lastRotYReka = Y
+                        lastRotZReka = Z
+
+                        if(tempX > 0.35)
+                        {
+                            rotXRekaUpCount++
+                        }
+                        else if(tempX < - 0.35)
+                        {
+                            rotXRekaDownCount++
+                        }
+
+                        if(tempY > 0.35)
+                        {
+                            rotYRekaUpCount++
+                        }
+                        else if(tempY < -0.35)
+                        {
+                            rotYRekaDownCount++
+                        }
+
+                        if(tempZ > 0.35)
+                        {
+                            rotZRekaUpCount++
+                        }
+                        else if(tempZ < -0.35)
+                        {
+                            rotZRekaDownCount++
+                        }
+
+                        if(rotXRekaUpCount > 5 && rotXRekaDownCount > 5 && rotYRekaUpCount > 5 && rotYRekaDownCount > 5 && rotZRekaUpCount > 4 && rotZRekaDownCount > 4)
+                        {
+                            excerciseCount++
+                            rotXRekaUpCount = 0
+                            rotXRekaDownCount = 0
                             rotYRekaUpCount = 0
                             rotYRekaDownCount = 0
                             rotZRekaUpCount = 0
