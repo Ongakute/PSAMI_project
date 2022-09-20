@@ -98,7 +98,14 @@ class ExcerciseActivity : AppCompatActivity() {
                 isConnected = false
             }
             activity.count = excerciseCount
-            activity.points = (2.5 * excerciseCount).toInt()
+            var points = 0
+            when (excerciseName) {
+                "Skłony" -> { points = (1.5 * excerciseCount).toInt() }
+                "Przysiady" -> { points = (2.5 * excerciseCount).toInt() }
+                "Brzuszki" -> { points = (3.5 * excerciseCount).toInt() }
+                "Pajacyki" -> { points = (4.5 * excerciseCount).toInt() }
+            }
+            activity.points = points
             UserActivityRepo.addUserActivity(activity) {
                 UsernameRepo.getUserName(UserRepo.userId()) {
                     PointRepo.addUserPoint(Point(it, activity.points), activity.userId) {
